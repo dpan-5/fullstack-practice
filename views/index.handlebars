@@ -1,0 +1,93 @@
+<h1>Threats</h1>
+
+
+<ul>
+    {{#each threats}}
+    <li>
+
+        <h3><span class="label">Name:</span> {{this.person_name}}</h3>
+        <p><span class="label">City:</span> {{this.city_name}}</p>
+        <p><span class="label">Age:</span> {{this.age}}</p>
+        <button data-id="{{this.id}}" class="deletePerson">Eliminate</button>
+        <a href="/{{this.id}}">Update this person</a>
+
+    </li>
+    {{/each}}
+</ul>
+
+<form class="createPerson">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+    </div>
+
+    <div class="form-group">
+        <label for="age">Age:</label>
+        <input type="text" id="age" name="age">
+    </div>
+
+    <div class="form-group">
+        <label for="threat">Is a threat:</label>
+        <input type="text" id="threat" name="threat">
+    </div>
+    
+    <div class="form-group">
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city">
+    </div>
+    <div>
+        <input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;">
+        <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+        <img id="output" width="200" />	
+        {{!-- <input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"> --}}
+
+    </div>
+    <input type="file"  accept="image/gif, image/jpeg, image/png" name="image" id="file" style="display: none;">
+    <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+
+    <button type="submit">Add Person</button>
+
+</form>
+
+<script>
+    var loadFile = function(event) {
+	var image = document.getElementById('output');
+	image.src = URL.createObjectURL(event.target.files[0]);
+};
+    $(function () {
+        $(".delPerson").on("click", function (event) {
+            var id = $(this).data("id");
+
+            $.ajax("/api/quotes" + id, {
+                type: "DELETE",
+            }).then(function () {
+                console.log(`delete id ${id}`);
+                location.reload();
+            });
+        });
+
+        $(".createPerson").on("submit", function (event) {
+            // Make sure to preventDefault on a submit event.
+            event.preventDefault();
+
+            var person = {
+                name: $("#name").val().trim(),
+                age: $("#age").val().trim(),
+                threat: $("#threat").val().trim(),
+                city: $("#city").val().trim(),
+            };
+
+            // Send the POST request.
+            $.ajax("/api/people", {
+                type: "POST",
+                data: newQuote,
+            }).then(function () {
+                console.log("created new quote");
+                // Reload the page to get the updated list
+                location.reload();
+            });
+        });
+        
+    });
+
+</script>
