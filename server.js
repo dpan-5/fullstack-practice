@@ -51,6 +51,19 @@ app.get("/api/image", function (req, res) {
   });
 });
 
+app.post("/api/image", function (req, res) {
+  console.log("req.body value " + req.body);
+  connection.query(
+    "insert into image (src) values ?",
+    //FIXME: figure out what to pass in here
+    [req.body.img],
+    function (err, data) {
+      if (err) throw err;
+      res.json(data);
+    }
+  );
+});
+
 app.delete("/api/people/:id", function (req, res) {
   var id = req.params.id;
   connection.query("delete from people where id=?", [id], function (err, data) {

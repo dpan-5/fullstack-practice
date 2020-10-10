@@ -57,12 +57,20 @@
 	image.src = URL.createObjectURL(event.target.files[0]);
 };
 
-    var testBtn = document.getElementById("testBtn")
+    var testBtn = document.getElementById("testBtn");
+    testBtn.addEventListener("click", function(){
+        var img = document.getElementById("insert-image");
+        $.get("/api/image", function(data){
+           // console.log(data)
+           img.setAttribute("src", data[0].src);
+        })
+    })
+
     $(function () {
         $(".delPerson").on("click", function (event) {
             var id = $(this).data("id");
 
-            $.ajax("/api/quotes" + id, {
+            $.ajax("/api/people" + id, {
                 type: "DELETE",
             }).then(function () {
                 console.log(`delete id ${id}`);
