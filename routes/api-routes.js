@@ -32,8 +32,9 @@ module.exports = function (app) {
     //   }
     // );
     var body = req.body;
-    db.People.create(body).then(function (results) {
-      res.json(results);
+    console.log("NEXT TEST " + JSON.stringify(body));
+    db.People.create({}).then(function (results) {
+      res.json(JSON.stringify(results));
     });
   });
 };
