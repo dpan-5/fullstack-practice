@@ -1,7 +1,7 @@
 // const express = require("express");
 // // const mysql = require("mysql");
 // const exphbs = require("express-handlebars");
-const connection = require("./config/connection");
+// const connection = require("./config/connection");
 // const orm = require("./config/orm");
 const exphbs = require("express-handlebars");
 
@@ -17,26 +17,26 @@ app.use(express.static("public"));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-app.get("/npc", (req, res) => {
-  orm.joinWhereCond("cities", "people");
-});
+// app.get("/npc", (req, res) => {
+//   orm.joinWhereCond("cities", "people");
+// });
 
-app.get("/", (req, res) => {
-  orm.joinWhereCond(
-    "cities",
-    "people",
-    "city_name",
-    "city_name",
-    "is_threat",
-    1,
-    function (result) {
-      //   console.log(result);
-      res.render("index", {
-        threats: result,
-      });
-    }
-  );
-});
+// app.get("/", (req, res) => {
+//   orm.joinWhereCond(
+//     "cities",
+//     "people",
+//     "city_name",
+//     "city_name",
+//     "is_threat",
+//     1,
+//     function (result) {
+//       //   console.log(result);
+//       res.render("index", {
+//         threats: result,
+//       });
+//     }
+//   );
+// });
 
 app.post("/api/people", function (req, res) {
   connection.query(
@@ -49,25 +49,25 @@ app.post("/api/people", function (req, res) {
   );
 });
 
-app.get("/api/image", function (req, res) {
-  connection.query("select * from image", function (err, data) {
-    if (err) throw err;
-    res.json(data);
-  });
-});
+// app.get("/api/image", function (req, res) {
+//   connection.query("select * from image", function (err, data) {
+//     if (err) throw err;
+//     res.json(data);
+//   });
+// });
 
-app.post("/api/image", function (req, res) {
-  console.log();
-  connection.query(
-    "insert into image (src) values ?",
-    //FIXME: figure out what to pass in here
-    [req.body.img],
-    function (err, data) {
-      if (err) throw err;
-      res.json(data);
-    }
-  );
-});
+// app.post("/api/image", function (req, res) {
+//   console.log();
+//   connection.query(
+//     "insert into image (src) values ?",
+//     //FIXME: figure out what to pass in here
+//     [req.body.img],
+//     function (err, data) {
+//       if (err) throw err;
+//       res.json(data);
+//     }
+//   );
+// });
 
 app.delete("/api/people/:id", function (req, res) {
   var id = req.params.id;
@@ -76,6 +76,8 @@ app.delete("/api/people/:id", function (req, res) {
     res.status(200).end();
   });
 });
+
+require("./routes/api-routes")(app);
 
 db.sequelize.sync().then(function () {
   app.listen(PORT, function () {
