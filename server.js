@@ -2,10 +2,11 @@
 // // const mysql = require("mysql");
 // const exphbs = require("express-handlebars");
 const connection = require("./config/connection");
-const orm = require("./config/orm");
+// const orm = require("./config/orm");
 const exphbs = require("express-handlebars");
 
 const express = require("express");
+const db = require("./models");
 
 const app = express();
 var PORT = process.env.PORT || 8080;
@@ -15,6 +16,10 @@ app.use(express.json());
 app.use(express.static("public"));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+
+app.get("/npc", (req, res) => {
+  orm.joinWhereCond("cities", "people");
+});
 
 app.get("/", (req, res) => {
   orm.joinWhereCond(
@@ -72,7 +77,13 @@ app.delete("/api/people/:id", function (req, res) {
   });
 });
 
-app.listen(PORT, function () {
-  // Log (server-side) when our server has started
-  console.log("Server listening on: http://localhost:" + PORT);
+db.sequelize.sync().then(function () {
+  app.listen(PORT, function () {
+    // Log (server-side) when our server has started
+    console.log("Server listening on: http://localhost:" + PORT);
+  });
 });
+// app.listen(PORT, function () {
+//   // Log (server-side) when our server has started
+//   console.log("Server listening on: http://localhost:" + PORT);
+// });
