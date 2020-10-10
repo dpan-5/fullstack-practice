@@ -80,9 +80,9 @@
             // Send the POST request.
             $.ajax("/api/people", {
                 type: "POST",
-                data: newQuote,
+                data: person,
             }).then(function () {
-                console.log("created new quote");
+                console.log("created new person");
                 // Reload the page to get the updated list
                 location.reload();
             });
