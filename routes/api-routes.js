@@ -18,7 +18,7 @@ module.exports = function (app) {
     //   }
     // );
     var body = req.body;
-    db.create(body).then(function (results) {
+    db.People.create(body).then(function (results) {
       res.json(results);
     });
   });
