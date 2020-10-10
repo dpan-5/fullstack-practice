@@ -8,6 +8,19 @@ module.exports = function (app) {
     });
   });
 
+  app.get("/api/people", (req, res) => {
+    db.People.findAll({}).then(function (response) {
+      res.json(response);
+    });
+  });
+
+  app.get("/api/people/:id", (req, res) => {
+    var id = req.params.id;
+    db.People.findOne({ id: id }).then(function (response) {
+      res.json(response);
+    });
+  });
+
   app.post("/api/people", function (req, res) {
     // connection.query(
     //   "insert into people (person_name, age, is_threat, city_name) values (?, ?, ?, ?)",

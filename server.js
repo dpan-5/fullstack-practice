@@ -38,16 +38,16 @@ app.set("view engine", "handlebars");
 //   );
 // });
 
-app.post("/api/people", function (req, res) {
-  connection.query(
-    "insert into people (person_name, age, is_threat, city_name) values (?, ?, ?, ?)",
-    [req.body.name, req.body.age, req.body.threat, req.body.city],
-    function (err, data) {
-      if (err) throw err;
-      res.status(200).end();
-    }
-  );
-});
+// app.post("/api/people", function (req, res) {
+//   connection.query(
+//     "insert into people (person_name, age, is_threat, city_name) values (?, ?, ?, ?)",
+//     [req.body.name, req.body.age, req.body.threat, req.body.city],
+//     function (err, data) {
+//       if (err) throw err;
+//       res.status(200).end();
+//     }
+//   );
+// });
 
 // app.get("/api/image", function (req, res) {
 //   connection.query("select * from image", function (err, data) {
@@ -69,13 +69,13 @@ app.post("/api/people", function (req, res) {
 //   );
 // });
 
-app.delete("/api/people/:id", function (req, res) {
-  var id = req.params.id;
-  connection.query("delete from people where id=?", [id], function (err, data) {
-    if (err) throw err;
-    res.status(200).end();
-  });
-});
+// app.delete("/api/people/:id", function (req, res) {
+//   var id = req.params.id;
+//   connection.query("delete from people where id=?", [id], function (err, data) {
+//     if (err) throw err;
+//     res.status(200).end();
+//   });
+// });
 
 require("./routes/api-routes")(app);
 
