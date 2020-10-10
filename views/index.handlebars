@@ -55,6 +55,10 @@
     var loadFile = function(event) {
 	var image = document.getElementById('output');
 	image.src = URL.createObjectURL(event.target.files[0]);
+    $.post( "/api/image", function( data ) {
+        console.log( data );
+        
+    });
 };
 
     var testBtn = document.getElementById("testBtn");
@@ -67,10 +71,10 @@
     })
 
     $(function () {
-        $(".delPerson").on("click", function (event) {
+        $(".deletePerson").on("click", function (event) {
             var id = $(this).data("id");
 
-            $.ajax("/api/people" + id, {
+            $.ajax("/api/people/" + id, {
                 type: "DELETE",
             }).then(function () {
                 console.log(`delete id ${id}`);

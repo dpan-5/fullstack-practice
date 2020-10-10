@@ -52,7 +52,7 @@ app.get("/api/image", function (req, res) {
 });
 
 app.post("/api/image", function (req, res) {
-  console.log("req.body value " + req.body);
+  console.log();
   connection.query(
     "insert into image (src) values ?",
     //FIXME: figure out what to pass in here
