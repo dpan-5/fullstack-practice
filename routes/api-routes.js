@@ -5,13 +5,7 @@ module.exports = function (app) {
   app.get("/", (req, res) => {
     db.People.findAll({}).then(function (response) {
       console.log("TEST HERE " + JSON.stringify(response));
-      res.render("index", {
-        response: {
-          person_name: response.person_name,
-          city_name: response.city_name,
-          age: response.age,
-        },
-      });
+      res.render("index", response[0]);
     });
   });
 
