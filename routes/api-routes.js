@@ -29,4 +29,13 @@ module.exports = function (app) {
       res.json(results);
     });
   });
+
+  app.delete("/api/people/:id", (req, res) => {
+    var id = req.params.id;
+    db.People.destroy({
+      where: { id: id },
+    }).then(function (results) {
+      res.json(results);
+    });
+  });
 };
