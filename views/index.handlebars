@@ -96,6 +96,7 @@
             // Send the POST request.
            $.post("/api/people", person, function(data){
                console.log(data);
+               location.reload();
            });
         });
         

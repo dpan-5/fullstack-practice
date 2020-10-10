@@ -23,18 +23,10 @@ module.exports = function (app) {
   });
 
   app.post("/api/people", function (req, res) {
-    // connection.query(
-    //   "insert into people (person_name, age, is_threat, city_name) values (?, ?, ?, ?)",
-    //   [req.body.name, req.body.age, req.body.threat, req.body.city],
-    //   function (err, data) {
-    //     if (err) throw err;
-    //     res.status(200).end();
-    //   }
-    // );
     var body = req.body;
     console.log("NEXT TEST " + JSON.stringify(body));
-    db.People.create({}).then(function (results) {
-      res.json(JSON.stringify(results));
+    db.People.create(body).then(function (results) {
+      res.json(results);
     });
   });
 };
