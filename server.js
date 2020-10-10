@@ -44,6 +44,13 @@ app.post("/api/people", function (req, res) {
   );
 });
 
+app.get("/api/image", function (req, res) {
+  connection.query("select * from image", function (err, data) {
+    if (err) throw err;
+    res.json(data);
+  });
+});
+
 app.delete("/api/people/:id", function (req, res) {
   var id = req.params.id;
   connection.query("delete from people where id=?", [id], function (err, data) {
