@@ -16,7 +16,7 @@
         </ul>
       </li> --}}
       <li><a href="/api/people">People</a></li>
-      <li><a href="#0">Three</a></li>
+      <li><a href="#0">Add a person</a></li>
     </ul>
   </div>
   <div class="top-bar-right">
@@ -35,10 +35,10 @@
 </ul>
 <div class="tabs-content" data-tabs-content="example-tabs">
   <div class="tabs-panel is-active" id="panel1">
-    <p>Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus.</p>
+    <a target="_blank" href="https://note-taker-to-the-max.herokuapp.com/notes">Take Notes here it's fun and free</a>
   </div>
   <div class="tabs-panel" id="panel2">
-    <p>Suspendisse dictum feugiat nisl ut dapibus.  Vivamus hendrerit arcu sed erat molestie vehicula. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.  Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
+    <a href="https://yum-yum-burgers.herokuapp.com/" target="_blank">Keep track of your burgers... real fucking useful</a>
   </div>
   <div class="tabs-panel" id="panel3">
     <img src="https://loremflickr.com/cache/resized/65535_50001660108_922f0950ea_400_200_nofilter.jpg" />
@@ -47,8 +47,8 @@
   <div class="off-canvas position-left" id="offCanvas" data-off-canvas>
     <h1>Tester Stuff</h1>
     <ul>
-        <li>Test1</li>
-        <li>Test1</li>
+        <li><a href="/">Home</a></li>
+        <li><a target="_blank" href="/api/people">API people</a></li>
         <li>Test1</li>
         <li>Test1</li>
     </ul>
@@ -90,7 +90,7 @@
         <label for="city_name">City:</label>
         <input type="text" id="city_name" name="city_name">
     </div>
-    <div>
+    <div id="0">
         <input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;">
         <p><label for="file" style="cursor: pointer;width:fit-content">Upload Image</label></p>
         <img id="output" width="200" />	

@@ -33,7 +33,7 @@ $(document).ready(function () {
 
     // Send the POST request.
     $.post("/api/people", person, function (data) {
-      console.log(data);
+      // console.log(data);
       location.reload();
     });
   });
@@ -74,7 +74,7 @@ $(document).ready(function () {
       url: "/api/people",
       data: { person_name: blah, id: id },
     }).then(function (response) {
-      console.log(response);
+      // console.log(response);
       location.reload();
     });
   });
@@ -92,7 +92,7 @@ $(document).ready(function () {
       url: "/api/people",
       data: { city_name: blah, id: id },
     }).then(function (response) {
-      console.log(response);
+      // console.log(response);
       location.reload();
     });
   });
@@ -110,7 +110,7 @@ $(document).ready(function () {
       url: "/api/people",
       data: { age: blah, id: id },
     }).then(function (response) {
-      console.log(response);
+      // console.log(response);
       location.reload();
     });
   });
