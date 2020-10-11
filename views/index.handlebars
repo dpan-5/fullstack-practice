@@ -59,20 +59,20 @@
     {{#each people}}
     <li>
 
-        <h3><span class="label">Name:</span><h3>{{this.person_name}}</h3> <input type='text' class='show{{this.id}} edit edit-name{{this.id}}' style='display: none;'></h3>
-        <p><span class="label">City:</span> <p>{{this.city_name}}</p><input type='text' class='show{{this.id}} edit edit-city{{this.id}}' style='display: none;'></p>
-        <p><span class="label">Age:</span> <p>{{this.age}}</p><input type='text' class='show{{this.id}} edit edit-age{{this.id}}' style='display: none;'></p>
+        <h3><span class="label">Name:</span><h3 data-id="{{this.id}}">{{this.person_name}}</h3> <input type='text' class='show{{this.id}} edit edit-name{{this.id}}' style='display: none;'><button class="changeBtn{{this.id}} changeBtn button tiny" style="display:none">Change</button></h3>
+        <h3><span class="label">City:</span> <h3>{{this.city_name}}</h3><input type='text' class='show{{this.id}} edit edit-city{{this.id}}' style='display: none;'><button class="changeBtn{{this.id}} changeCity button tiny" style="display:none">Change</button></h3>
+        <h3><span class="label">Age:</span> <h3>{{this.age}}</h3><input type='text' class='show{{this.id}} edit edit-age{{this.id}}' style='display: none;'><button class="changeBtn{{this.id}} changeAge button tiny" style="display:none">Change</button></h3>
         <button data-id="{{this.id}}" class="button deletePerson">Eliminate</button>
         <button class="update-person button" data-id="{{this.id}}">Update this person</button>
     </li>
     {{/each}}
 </ul>
 <button class="button tiny" id="testBtn" style="float:right">Test this</button>
-<img style="height:200px; width:200px" id="insert-image">
+<img style="height:200px; width:200px; display:none" id="insert-image">
 
 <form class="createPerson">
     <div class="form-group">
-        {{!-- <label for="person_name">Name:</label> --}}
+        <label for="person_name">Name:</label>
         <input type="text" id="person_name" name="person_name">
     </div>
 

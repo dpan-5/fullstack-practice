@@ -51,12 +51,67 @@ $(document).ready(function () {
     console.log(nameField);
     // var cityVal = $(".city1").text();
     // var ageVal = $(".age1").text();
-    $(`.show${idNumber}`).attr("style", "display:block");
+    $(`.show${idNumber}`).attr("style", "display:inline");
+    $(`.changeBtn${idNumber}`).attr("style", "display:inline");
     // var btn = $("<button class='button'>").text("submit");
 
     //console.log("BLAH " + nameVal)
     // $(".edit-name").val(nameVal);
     // $(".edit-city").val(cityVal);
     // $(".edit-age").val(ageVal);
+  });
+
+  $(".changeBtn").on("click", function (event) {
+    event.preventDefault();
+    // console.log("test");
+    // let text = $(this).siblings("h3:eq( 1 )").text();
+    // console.log(text);
+    let id = $(this).siblings("h3:eq( 1 )").data();
+    let blah = $(this).siblings("input").val();
+
+    $.ajax({
+      method: "PUT",
+      url: "/api/people",
+      data: { person_name: blah, id: id },
+    }).then(function (response) {
+      console.log(response);
+      location.reload();
+    });
+  });
+
+  $(".changeCity").on("click", function (event) {
+    event.preventDefault();
+    // console.log("test");
+    // let text = $(this).siblings("h3:eq( 1 )").text();
+    // console.log(text);
+    let id = $(this).siblings("h3:eq( 1 )").data();
+    let blah = $(this).prev().val();
+    // console.log("BLAH HERE " + blah);
+    $.ajax({
+      method: "PUT",
+      url: "/api/people",
+      data: { city_name: blah, id: id },
+    }).then(function (response) {
+      console.log(response);
+      location.reload();
+    });
+  });
+
+  $(".changeAge").on("click", function (event) {
+    event.preventDefault();
+    // console.log("test");
+    // let text = $(this).siblings("h3:eq( 1 )").text();
+    // console.log(text);
+    let id = $(this).siblings("h3:eq( 1 )").data();
+    let blah = $(this).prev().val();
+    // console.log(blah);
+    $.ajax({
+      method: "PUT",
+      url: "/api/people",
+      data: { age: blah, id: id },
+    }).then(function (response) {
+      console.log(response);
+      location.reload();
+    });
   });
 });

@@ -39,12 +39,19 @@ module.exports = function (app) {
     });
   });
 
-  app.put("/api/people/:id", (req, res) => {
-    id = req.params.id;
+  app.put("/api/people/", (req, res) => {
     body = req.body;
-    db.People.update({ person_name: body.person_name }).then(function (
-      response
-    ) {
+    console.log(body);
+    console.log(body.id.id);
+    // console.log($(this).text());
+    db.People.update(
+      {
+        person_name: body.person_name,
+        city_name: body.city_name,
+        age: body.age,
+      },
+      { where: { id: body.id.id } }
+    ).then(function (response) {
       res.json(response);
     });
   });
