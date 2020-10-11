@@ -1,25 +1,78 @@
+<div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="medium">
+  <button class="menu-icon" type="button" data-toggle="responsive-menu"></button>
+  <div class="title-bar-title">Menu</div>
+</div>
+
+<div class="top-bar" id="responsive-menu">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text">Threat Analysis</li>
+      {{!-- <li class="has-submenu">
+        <a href="#0">One</a>
+        <ul class="submenu menu vertical" data-submenu>
+          <li><a href="#0">One</a></li>
+          <li><a href="#0">Two</a></li>
+          <li><a href="#0">Three</a></li>
+        </ul>
+      </li> --}}
+      <li><a href="/api/people">People</a></li>
+      <li><a href="#0">Three</a></li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="menu">
+      <li><input type="search" placeholder="Search"></li>
+      <li><button type="button" class="button">Search</button></li>
+    </ul>
+  </div>
+</div>
 <h1>Threats</h1>
 
-
+<ul class="tabs" data-tabs id="example-tabs">
+  <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Tab 1</a></li>
+  <li class="tabs-title"><a data-tabs-target="panel2" href="#panel2">Tab 2</a></li>
+  <li class="tabs-title"><a data-tabs-target="panel3" href="#panel3">Tab 3</a></li>
+</ul>
+<div class="tabs-content" data-tabs-content="example-tabs">
+  <div class="tabs-panel is-active" id="panel1">
+    <p>Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus.</p>
+  </div>
+  <div class="tabs-panel" id="panel2">
+    <p>Suspendisse dictum feugiat nisl ut dapibus.  Vivamus hendrerit arcu sed erat molestie vehicula. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.  Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
+  </div>
+  <div class="tabs-panel" id="panel3">
+    <img src="https://loremflickr.com/cache/resized/65535_50001660108_922f0950ea_400_200_nofilter.jpg" />
+  </div>
+</div>
+  <div class="off-canvas position-left" id="offCanvas" data-off-canvas>
+    <h1>Tester Stuff</h1>
+    <ul>
+        <li>Test1</li>
+        <li>Test1</li>
+        <li>Test1</li>
+        <li>Test1</li>
+    </ul>
+  </div>
+  <div class="off-canvas-content" data-off-canvas-content>
+    
 <ul>
     {{#each people}}
     <li>
 
-        <h3><span class="label">Name:</span> {{this.person_name}}</h3>
-        <p><span class="label">City:</span> {{this.city_name}}</p>
-        <p><span class="label">Age:</span> {{this.age}}</p>
-        <button data-id="{{this.id}}" class="deletePerson">Eliminate</button>
-        <a href="/{{this.id}}">Update this person</a>
-
+        <h3><span class="label">Name:</span><h3>{{this.person_name}}</h3> <input type='text' class='show{{this.id}} edit edit-name{{this.id}}' style='display: none;'></h3>
+        <p><span class="label">City:</span> <p>{{this.city_name}}</p><input type='text' class='show{{this.id}} edit edit-city{{this.id}}' style='display: none;'></p>
+        <p><span class="label">Age:</span> <p>{{this.age}}</p><input type='text' class='show{{this.id}} edit edit-age{{this.id}}' style='display: none;'></p>
+        <button data-id="{{this.id}}" class="button deletePerson">Eliminate</button>
+        <button class="update-person button" data-id="{{this.id}}">Update this person</button>
     </li>
     {{/each}}
 </ul>
-<button id="testBtn" style="float:right">Test this</button>
+<button class="button tiny" id="testBtn" style="float:right">Test this</button>
 <img style="height:200px; width:200px" id="insert-image">
 
 <form class="createPerson">
     <div class="form-group">
-        <label for="person_name">Name:</label>
+        {{!-- <label for="person_name">Name:</label> --}}
         <input type="text" id="person_name" name="person_name">
     </div>
 
@@ -39,67 +92,19 @@
     </div>
     <div>
         <input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;">
-        <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+        <p><label for="file" style="cursor: pointer;width:fit-content">Upload Image</label></p>
         <img id="output" width="200" />	
         {{!-- <input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"> --}}
 
     </div>
-    <input type="file"  accept="image/gif, image/jpeg, image/png" name="image" id="file" style="display: none;">
-    <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+    {{!-- <input type="file"  accept="image/gif, image/jpeg, image/png" name="image" id="file" style="display: none;">
+    <p><label for="file" style="cursor: pointer;">Upload Image</label></p> --}}
 
-    <button type="submit">Add Person</button>
+    <button class="button" type="submit">Add Person</button>
+    <button type="button" class="button" data-toggle="offCanvas">Open Menu</button>
 
 </form>
+  </div>
 
-<script>
-    var loadFile = function(event) {
-	var image = document.getElementById('output');
-	image.src = URL.createObjectURL(event.target.files[0]);
-    $.post( "/api/image", function( data ) {
-        console.log( data );
-        
-    });
-};
 
-    var testBtn = document.getElementById("testBtn");
-    testBtn.addEventListener("click", function(){
-        var img = document.getElementById("insert-image");
-        $.get("/api/image", function(data){
-           // console.log(data)
-           img.setAttribute("src", data[0].src);
-        })
-    })
 
-    $(function () {
-        $(".deletePerson").on("click", function (event) {
-            var id = $(this).data("id");
-
-            $.ajax("/api/people/" + id, {
-                type: "DELETE",
-            }).then(function () {
-                console.log(`delete id ${id}`);
-                location.reload();
-            });
-        });
-
-        $(".createPerson").on("submit", function (event) {
-            // Make sure to preventDefault on a submit event.
-            event.preventDefault();
-
-            var person = {
-                person_name: $("#person_name").val().trim(),
-                age: $("#age").val().trim(),
-                isThreat: $("#isThreat").val().trim(),
-                city_name: $("#city_name").val().trim(),
-            };
-
-            // Send the POST request.
-           $.post("/api/people", person, function(data){
-               console.log(data);
-               location.reload();
-           });
-        });
-        
-    });
-
-</script>
