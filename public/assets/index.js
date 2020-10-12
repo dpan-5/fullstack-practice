@@ -2,13 +2,13 @@
 
 $(document).ready(function () {
   $(document).foundation();
-  var loadFile = function (event) {
-    var image = document.getElementById("output");
-    image.src = URL.createObjectURL(event.target.files[0]);
-    $.post("/api/image", function (data) {
-      console.log(data);
-    });
-  };
+  // var loadFile = function (event) {
+  //   var image = document.getElementById("output");
+  //   image.src = URL.createObjectURL(event.target.files[0]);
+  //   $.post("/api/image", function (data) {
+  //     console.log(data);
+  //   });
+  // };
   $(".deletePerson").on("click", function (event) {
     var id = $(this).data("id");
 
